@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Subject, Author, ResourceType, LibraryResource, Keyword, SearchLog, UserFavorite
+
+from .models import (Author, Keyword, LibraryResource, ResourceType, SearchLog,
+                     Subject, UserFavorite)
 
 
 @admin.register(Subject)

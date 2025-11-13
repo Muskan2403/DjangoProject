@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
+
 from decouple import config
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-v$5jeo$k^8)n@+tq-la4(_3^u$s6)=m7c^zh79=t9%b@r1h_yj')
@@ -38,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,8 +85,9 @@ WSGI_APPLICATION = 'library_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 import os
-from decouple import config
+
 import dj_database_url
+from decouple import config
 
 if os.environ.get('DATABASE_URL'):
     # Production (Railway) - uses PostgreSQL
@@ -183,3 +186,28 @@ STATIC_URL = '/static/'
 
 # Whitenoise middleware
 MIDDLEWARE.insert(0, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Library Admin",
+    "site_header": "Library Management Dashboard",
+    "site_brand": "📚 Library System",
+    "welcome_sign": "Welcome, Muskan 👋",
+    "copyright": "© 2025 Library Management System",
+    "show_ui_builder": True,  # Enables live theme tweaking
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "View Site", "url": "/", "new_window": True},
+        {"model": "auth.User"},
+        {"app": "library"},
+    ],
+}
+
+JAZZMIN_SETTINGS["icons"] = {
+    "auth": "fas fa-users-cog",
+    "auth.user": "fas fa-user",
+    "auth.Group": "fas fa-users",
+    "library": "fas fa-book",
+    "library.libraryresource": "fas fa-book-open",
+    "library.authors": "fas fa-pen-nib",
+    "library.subjects": "fas fa-layer-group",
+}
