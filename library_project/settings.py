@@ -193,7 +193,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "📚 Library System",
     "welcome_sign": "Welcome, Muskan 👋",
     "copyright": "© 2025 Library Management System",
-    "show_ui_builder": True,  # Enables live theme tweaking
+    "show_ui_builder": False,  # Enables live theme tweaking
+    "show_recent": False,
+    "hide_sidebar": True,
+
     "topmenu_links": [
         {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "View Site", "url": "/", "new_window": True},

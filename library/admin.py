@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from .models import (Author, Keyword, LibraryResource, ResourceType, SearchLog,
                      Subject, UserFavorite)
@@ -24,9 +25,18 @@ class AuthorAdmin(admin.ModelAdmin):
     resource_count.short_description = 'Resources'
 
 
+# @admin.register(ResourceType)
+# class ResourceTypeAdmin(admin.ModelAdmin):
+#     list_display = ['get_name_display', 'icon']
+
 @admin.register(ResourceType)
 class ResourceTypeAdmin(admin.ModelAdmin):
-    list_display = ['get_name_display', 'icon']
+    list_display = ['get_name_display', 'show_icon']
+
+    def show_icon(self, obj):
+        return format_html('<i class="{}"></i>', obj.icon)
+
+    show_icon.short_description = 'Icon'
 
 
 @admin.register(LibraryResource)

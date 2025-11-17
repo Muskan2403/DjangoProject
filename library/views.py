@@ -1,15 +1,17 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Q, Count
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Count, Q
 from django.http import JsonResponse
-from django.views.generic import ListView, DetailView
-from django.views.decorators.http import require_http_methods
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from .models import LibraryResource, Subject, ResourceType, Keyword, SearchLog, UserFavorite, Author
-from .forms import LibrarySearchForm, UserRegistrationForm, UserLoginForm
+from django.views.decorators.http import require_http_methods
+from django.views.generic import DetailView, ListView
+
+from .forms import LibrarySearchForm, UserLoginForm, UserRegistrationForm
+from .models import (Author, Keyword, LibraryResource, ResourceType, SearchLog,
+                     Subject, UserFavorite)
 
 
 def home(request):
